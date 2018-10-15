@@ -3,7 +3,7 @@ from Algorathim import GridWorld
 
 def main():
     i = 0
-    n_iters = 1
+    n_iters = 10
     world = GridWorld()
 
     while i < n_iters:

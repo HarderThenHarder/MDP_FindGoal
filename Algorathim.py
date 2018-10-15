@@ -1,20 +1,21 @@
 
 
 class GridWorld:
+    score = 50
     state = [0, 1, 2, 3, 4, 5, 6, 7]
     action_space = ['n', 'e', 's', 'w']
-    reward = {'0_s': -100,
-              '2_s': 100,
-              '4_s': -100,
-              '5_e': -100,
-              '5_s': -100,
-              '5_w': -100,
-              '6_e': 100,
-              '6_s': 100,
-              '6_w': 100,
-              '7_e': -100,
-              '7_s': -100,
-              '7_w': -100}
+    reward = {'0_s': -score,
+              '2_s': score,
+              '4_s': -score,
+              '5_e': -score,
+              '5_s': -score,
+              '5_w': -score,
+              '6_e': score,
+              '6_s': score,
+              '6_w': score,
+              '7_e': -score,
+              '7_s': -score,
+              '7_w': -score}
     t = {'0_e': 1,
          '0_s': 5,
          '1_w': 0,
@@ -34,6 +35,8 @@ class GridWorld:
     pi_star = []
 
     def calculate_v(self):
+        tmp_v_states = self.v_states
+
         for i in range(len(self.v_states)):
             tmp_v = 0
             for action in self.action_space:
@@ -48,7 +51,9 @@ class GridWorld:
                         tmp_v += 0.25 * (-1 + self.gama * self.v_states[self.t[key]])
                     else:
                         tmp_v += 0.25 * (-1 + self.gama * self.v_states[i])
-            self.v_states[i] = tmp_v
+            tmp_v_states[i] = tmp_v
+
+        self.v_states = tmp_v_states
 
     def calculate_pi(self):
         max_q_pi = 0
