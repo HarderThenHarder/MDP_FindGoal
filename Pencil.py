@@ -65,5 +65,14 @@ class Pencil:
         Pencil.stroke_line(plt, center, point_d, line_style=line_style, color=color, alpha=alpha, line_width=line_width)
 
     @staticmethod
-    def stroke_arrow(plt, start_pos=[0, 0], end_pos=[1, 1], color='black', shrink=0.05):
-        plt.annotate('', xy=end_pos, xytext=start_pos, arrowprops=dict(facecolor=color, shrink=shrink),)
+    def stroke_arrow(plt, start_pos=[0, 0], end_pos=[1, 1], color='black', head_length=10, head_width=10, arrow_width=5):
+        plt.annotate('', xy=end_pos, xytext=start_pos, arrowprops=dict(facecolor=color, headlength=head_length, headwidth=head_width, width=arrow_width))
+
+    @staticmethod
+    def write_text(plt, content='text', text_pos=[0, 0], font_size=10, color='k', font_weight='normal', font_style='normal'):
+        """
+        fontweight: ['light', 'normal', 'medium', 'semibold', 'bold', 'heavy', 'black']
+        fontstyle: ['normal' | 'italic' | 'oblique']
+        math-term: u'$\mu-\delta$', use $...$ to express the math term like: μ, δ
+        """
+        plt.annotate(content, xy=text_pos, xytext=text_pos, fontsize=font_size, color=color, fontweight=font_weight, fontstyle=font_style)
